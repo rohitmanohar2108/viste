@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'rocksalt': ['Rocksalt', 'cursive'],
+        'dm-sans': ['"DM Sans"', 'sans-serif'],
       },
     },
   },

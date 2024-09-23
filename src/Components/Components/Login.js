@@ -39,7 +39,7 @@ const Login = () => {
       </div>
 
       {/* Login Form Container */}
-      <div className={`relative z-10 bg-black bg-opacity-70 p-8 rounded-lg shadow-lg max-w-md w-full space-y-6 ${isSignInForm ? "" : "max-w-2xl"}`}>
+      <div className={`relative z-10 bg-black bg-opacity-70 p-8 rounded-lg shadow-lg max-w-md w-full space-y-6 ${isSignInForm ? "" : "max-w-3xl"}`}>
         {/* Title */}
         <h1 className="text-4xl font-extrabold bg-gradient-to-r from-violet-500 via-red-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent tracking-wider text-center">
           {isSignInForm ? (

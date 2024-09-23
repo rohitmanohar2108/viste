@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { checkValidData } from "../../utils/validate";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const email = useRef(null);
+  const password = useRef(null);
+
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
+  };
+
+  const handleButtonClick = () => {
+    const message = checkValidData(email.current.value, password.current.value);
+    setErrorMessage(message);
   };
 
   return (
@@ -34,7 +44,8 @@ const Login = () => {
         <h1 className="text-4xl font-extrabold bg-gradient-to-r from-violet-500 via-red-600 via-orange-500 to-yellow-500 bg-clip-text text-transparent tracking-wider text-center">
           {isSignInForm ? (
             <>
-              Welcome to Cognify<span className="text-blue-400">Web</span>
+              Welcome to <span className="font-dm-sans">Cognify</span>
+              <span className="text-blue-400">Web</span>
             </>
           ) : (
             <>Create Your Account</>
@@ -49,7 +60,7 @@ const Login = () => {
         </p>
 
         {/* Login Form */}
-        <form className="space-y-4">
+        <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
           {isSignInForm ? (
             <>
               <div>
@@ -57,6 +68,7 @@ const Login = () => {
                   Gmail
                 </label>
                 <input
+                  ref={email}
                   type="email"
                   className="w-full p-3 mt-1 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your email"
@@ -69,6 +81,7 @@ const Login = () => {
                   Password
                 </label>
                 <input
+                  ref={password}
                   type="password"
                   className="w-full p-3 mt-1 bg-gray-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Enter your password"
@@ -159,10 +172,13 @@ const Login = () => {
             </a>
           </div>
 
+          <p className="text-red-500 font-bold text-lg">{errorMessage}</p>
+
           {/* Submit Button */}
           <button
             type="submit"
             className="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-600 hover:bg-blue-900 rounded-lg text-white font-bold text-lg tracking-wide hover:shadow-xl transition duration-300"
+            onClick={handleButtonClick}
           >
             {isSignInForm ? "Sign In" : "Sign Up"}
           </button>
